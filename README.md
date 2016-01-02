@@ -5,7 +5,7 @@ MarsDB-LocalForage
 [![npm version](https://badge.fury.io/js/marsdb-localforage.svg)](https://www.npmjs.com/package/marsdb-localforage)
 [![Dependency Status](https://david-dm.org/c58/marsdb-localforage.svg)](https://david-dm.org/c58/marsdb-localforage)
 
-MarsDB storage implementation for [LocalForage](https://github.com/mozilla/localForage).
+[MarsDB](https://github.com/c58/marsdb) storage implementation for [LocalForage](https://github.com/mozilla/localForage).
 
 ## Usage
 ```javascript
