@@ -1,0 +1,35 @@
+{
+  "name": "marsdb-localforage",
+  "description": "MarsDB storage implementation for LocalForage",
+  "main": "index.js",
+  "authors": [
+    "Artem Artemev"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "mongo",
+    "minimongo",
+    "embedded",
+    "localstorage",
+    "db",
+    "database",
+    "meteor"
+  ],
+  "homepage": "https://github.com/c58/marsdb-localforage",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:c58/marsdb-localforage.git"
+  },
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

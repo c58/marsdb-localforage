@@ -1,0 +1,12 @@
+language: node_js
+
+sudo: false
+
+install:
+  - npm install -g babel-cli
+  - npm install
+
+node_js:
+  - "5.3"
+
+script: npm run test_browser
