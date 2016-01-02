@@ -1,19 +1,19 @@
-MarsDB-LocalStorage
+MarsDB-LocalForage
 =========
 
-[![Build Status](https://travis-ci.org/c58/marsdb-localstorage.svg?branch=master)](https://travis-ci.org/c58/marsdb-localstorage)
-[![npm version](https://badge.fury.io/js/marsdb-localstorage.svg)](https://www.npmjs.com/package/marsdb-localstorage)
-[![Dependency Status](https://david-dm.org/c58/marsdb-localstorage.svg)](https://david-dm.org/c58/marsdb-localstorage)
+[![Build Status](https://travis-ci.org/c58/marsdb-localforage.svg?branch=master)](https://travis-ci.org/c58/marsdb-localforage)
+[![npm version](https://badge.fury.io/js/marsdb-localforage.svg)](https://www.npmjs.com/package/marsdb-localforage)
+[![Dependency Status](https://david-dm.org/c58/marsdb-localforage.svg)](https://david-dm.org/c58/marsdb-localforage)
 
-MarsDB storage implementation for LocalStorage.
+MarsDB storage implementation for [LocalForage](https://github.com/mozilla/localForage).
 
 ## Usage
 ```javascript
 import Collection from ‘marsdb’;
-import LocalStorageManager from 'marsdb-localstorage';
+import LocalForageManager from 'marsdb-localforage';
 
 // Setup different storage managers
-Collection.defaultStorageManager(LocalStorageManager);
+Collection.defaultStorageManager(LocalForageManager);
 
 const users = new Collection(‘users’);
 ```
