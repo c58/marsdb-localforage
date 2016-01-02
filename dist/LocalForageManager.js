@@ -21,7 +21,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var StorageManager = typeof window !== 'undefined' && window.Mars ? window.Mars.StorageManager : require('marsdb').StorageManager;
-var EJSON = typeof window !== 'undefined' && window.Mars ? window.Mars.EJSON : require('marsdb').EJSON;
 
 /**
  * LocalForage storage implementation. It uses
@@ -38,12 +37,7 @@ var LocalForageManager = (function (_StorageManager) {
 
     _classCallCheck(this, LocalForageManager);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(LocalForageManager).call(this, db, options));
-
-    _this.forage = _localforage2.default.createInstance({
-      name: db.modelName
-    });
-    return _this;
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(LocalForageManager).call(this, db, options));
   }
 
   _createClass(LocalForageManager, [{
@@ -52,9 +46,7 @@ var LocalForageManager = (function (_StorageManager) {
       var _this2 = this;
 
       return this._queue.add(function () {
-        return Promise.all(Object.keys(_this2._storage).map(function (key) {
-          return _this2.forage.removeItem(key);
-        })).then(function () {
+        return _this2.forage.clear().then(function () {
           return _get(Object.getPrototypeOf(LocalForageManager.prototype), 'destroy', _this2).call(_this2);
         });
       });
@@ -66,7 +58,7 @@ var LocalForageManager = (function (_StorageManager) {
 
       return _get(Object.getPrototypeOf(LocalForageManager.prototype), 'persist', this).call(this, key, value).then(function () {
         return _this3._queue.add(function () {
-          return _this3.forage.setItem(key, EJSON.stringify(value));
+          return _this3.forage.setItem(key, value);
         });
       });
     }
@@ -84,8 +76,17 @@ var LocalForageManager = (function (_StorageManager) {
   }, {
     key: '_loadStorage',
     value: function _loadStorage() {
+      var _this5 = this;
+
+      this.forage = this.forage || _localforage2.default.createInstance({
+        name: this.db.modelName
+      });
+
       return this._queue.add(function () {
-        // TODO
+        return _this5.forage.iterate(function (value, key, i) {
+          var doc = _this5.db.create(value);
+          _this5._storage[doc._id] = doc;
+        });
       });
     }
   }]);
